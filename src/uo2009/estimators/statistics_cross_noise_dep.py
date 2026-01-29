@@ -251,7 +251,7 @@ def build_Z_sequence(
 
 
 # ============================================================
-# 4) Subsampling variance estimator: Eq. (7)
+# Subsampling variance estimator: Eq. (7)
 # ============================================================
 
 def subsampling_variance_nonoverlapping(
@@ -261,7 +261,7 @@ def subsampling_variance_nonoverlapping(
     c: Optional[float] = None,
 ) -> Tuple[float, int, int]:
     """
-    Compute sigma_hat^2_{ell,f} via nonoverlapping subsampling blocks (Eq. (7)). :contentReference[oaicite:10]{index=10}
+    Compute sigma_hat^2_{ell,f} via nonoverlapping subsampling blocks (Eq. (7)).
 
     Given Z of length N:
       - choose M (block length), K = floor(N / M)
@@ -295,7 +295,7 @@ def subsampling_variance_nonoverlapping(
     block_means = blocks.mean(axis=1)
     grand_mean = block_means.mean()
 
-    sigma2_hat = (M / K) * np.sum((block_means - grand_mean) ** 2)  # Eq. (7) :contentReference[oaicite:11]{index=11}
+    sigma2_hat = (M / K) * np.sum((block_means - grand_mean) ** 2)  # Eq. (7)
     return float(sigma2_hat), M, K
 
 
@@ -311,8 +311,8 @@ def compute_tau_from_Z(
     c: Optional[float] = None,
 ) -> TauResult:
     """
-    Compute tau(ell) := sqrt(N_ell) * Zbar / sigma_hat  (Eq. (9)). :contentReference[oaicite:12]{index=12}
-    sigma_hat is sqrt of subsampling variance estimator (Eq. (7)). :contentReference[oaicite:13]{index=13}
+    Compute tau(ell) := sqrt(N_ell) * Zbar / sigma_hat  (Eq. (9)). 
+    sigma_hat is sqrt of subsampling variance estimator (Eq. (7)). 
     """
     Z = _as_float_1d(Z, "Z")
     N_ell = int(Z.size)
@@ -347,7 +347,7 @@ def compute_tau(
     c: Optional[float] = None,
 ) -> TauResult:
     """
-    Full pipeline: build Z_{ell,k} then compute tau(ell). :contentReference[oaicite:14]{index=14}
+    Full pipeline: build Z_{ell,k} then compute tau(ell).
     """
     Z = build_Z_sequence(t1, y1, t2, y2, ell, ell_in=ell_in)
     return compute_tau_from_Z(ell, Z, M=M, c=c)
@@ -372,7 +372,7 @@ def compute_tau_grid(
 
 
 # ============================================================
-# 6) Optional: sequential threshold selection (Theorem 1 discussion)
+# sequential threshold selection (Theorem 1 discussion)
 # ============================================================
 
 def select_threshold_via_tau(
@@ -390,7 +390,7 @@ def select_threshold_via_tau(
     """
     Implements the sequential testing logic described after Theorem 1:
     start from a large L where dependence should be zero, then move inward
-    until |tau(ell)| exceeds the critical value; the first rejection determines ell*. :contentReference[oaicite:15]{index=15}
+    until |tau(ell)| exceeds the critical value; the first rejection determines ell*.
     """
     tested = []
     ell_star = None
