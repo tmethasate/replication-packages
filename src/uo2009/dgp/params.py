@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class EfficientPriceParams:
-    T: float = 23400.0              # 6.5 hours in seconds :contentReference[oaicite:6]{index=6}
+    T: float = 23400.0              # 6.5 hours in seconds 
     dt_internal: float = 1.0        # internal Euler step (seconds)
     lambda1: float = 0.5
     lambda2: float = 0.5
@@ -19,5 +19,5 @@ class EfficientPriceParams:
 
 @dataclass(frozen=True)
 class NoiseParamsMA2:
-    nsr1: float = 0.005             # noise-to-signal ratios :contentReference[oaicite:7]{index=7}
+    nsr1: float = 0.005             # noise-to-signal ratios 
     nsr2: float = 0.002
